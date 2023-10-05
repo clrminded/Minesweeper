@@ -5,6 +5,11 @@ class Minesweeper
 	static get EMPTY() { return "E"; }
 	
 	// PLACE YOUR PROPERTIES BELOW
+
+	static bombs;
+    static cells;
+    static rows;
+    static columns;
     
 
 	// PLACE YOUR PROPERTIES ABOVE
@@ -12,6 +17,15 @@ class Minesweeper
     constructor(rows = Minesweeper.SIZE, columns = Minesweeper.SIZE, probability_chance = 0.1)
     {
         // PLACE YOUR PROPERTIES BELOW
+
+		this.cells = new Array(rows).fill(null).map(()=>new Array(columns).fill(null));
+		this.rows = rows;
+		this.columns = columns;
+		this.bombs = Math.floor(probability_chance * Minesweeper.SIZE); 
+		
+
+        // build the board: see init_board() below
+        this.init_board();
 		
 		// PLACE YOUR PROPERTIES ABOVE
     }
@@ -19,6 +33,19 @@ class Minesweeper
     init_board()
     {
 		// PLACE YOUR IMPLEMENTATION BELOW
+
+		// After looking at this I think it would be best to create a 2D array
+        // with the values of these buttons, because we will be able to call on a 
+        // specific index to the value, this implementation just creates the buttons
+        // in an iterative way, but there would be no way for use to hold the value...
+        // in other words change this to a 2D array...
+		
+        for(let i = 0; i < Minesweeper.SIZE; i++) {
+			for(let j = 0; j < Minesweeper.SIZE; j++) {
+				this.cells[i][j] = create_button();
+			}
+			create_line_break();
+		}
         
 		// PLACE YOUR IMPLEMENTATION ABOVE
 	}
