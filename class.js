@@ -10,7 +10,9 @@ class Minesweeper
     static cells;
     static rows;
     static columns;
-    
+	static cellX;
+	static cellY;
+	
 
 	// PLACE YOUR PROPERTIES ABOVE
 
@@ -18,13 +20,12 @@ class Minesweeper
     {
         // PLACE YOUR PROPERTIES BELOW
 
-		this.cells = new Array(rows).fill(null).map(()=>new Array(columns).fill(null));
+		this.cells = new Array(rows).fill(null).map(() => new Array(columns).fill(null));
+		this.bombs = new Array(rows).fill(null).map(() => new Array(2).fill(null));
 		this.rows = rows;
 		this.columns = columns; 
-		
-
-        // build the board: see init_board() below
-        this.init_board();
+		this.cellX = 0;
+		this.cellY = 0;
 		
 		// PLACE YOUR PROPERTIES ABOVE
     }
@@ -41,9 +42,8 @@ class Minesweeper
 		
         for(let i = 0; i < Minesweeper.SIZE; i++) {
 			for(let j = 0; j < Minesweeper.SIZE; j++) {
-				this.cells[i][j] = create_button();
+				this.cells[i][j] = Minesweeper.EMPTY;
 			}
-			create_line_break();
 		}
         
 		// PLACE YOUR IMPLEMENTATION ABOVE
@@ -52,13 +52,15 @@ class Minesweeper
 	flood_fill()
 	{
 		// PLACE YOUR IMPLEMENTATION BELOW
-
+		
 		// PLACE YOUR IMPLEMENTATION ABOVE
 	}
 	
 	lock()
 	{
 		// PLACE YOUR IMPLEMENTATION BELOW
+	
+		
 
 		// PLACE YOUR IMPLEMENTATION ABOVE
 	}
@@ -66,7 +68,8 @@ class Minesweeper
 	unlock()
 	{
 		// PLACE YOUR IMPLEMENTATION BELOW
-
+		
+		
 		// PLACE YOUR IMPLEMENTATION ABOVE
 	}
 	
