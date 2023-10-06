@@ -20,7 +20,23 @@
 				
 			// assign variable names game to Minesweeper object and add it to body
 			// Look in class.js to see the implementation of Minesweeper()
-			let game = new Minesweeper();
+			<?php
+				$rows = 15;
+				$cols = 15;
+				$randNum = rand(0,15);
+
+				if (isset($_GET["rows"])) {
+    				$rows = $_GET["rows"];
+				} 
+				if (isset($_GET["columns"])) {
+					$cols = $_GET["columns"];
+				}
+				if (isset($_GET["probability_chance"])) {
+					$randNum = $_GET["probability_chance"];
+				}
+			?>
+
+			let game = new Minesweeper(<?php echo $rows; ?>, <?php echo $cols; ?>, <?php echo $randNum ?> );
 			game.init_board();
 			
 			for(let i = 0; i < game.rows; i++) {

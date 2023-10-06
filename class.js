@@ -23,7 +23,7 @@ class Minesweeper
 		this.columns = columns; 
 		this.probability_chance = probability_chance;
 		this.cells = new Array(rows).fill(null).map(() => new Array(columns).fill(null));
-		this.bombs = new Array(Math.floor(probability_chance * (rows*columns))).fill(null).map(() => new Array(2).fill(null)); // creates 15 bombs
+		this.bombs = new Array(probability_chance).fill(null).map(() => new Array(2).fill(null)); // creates 15 bombs
 		
 		// PLACE YOUR PROPERTIES ABOVE
     }
@@ -41,7 +41,7 @@ class Minesweeper
 		}
 
 		// generate random indexes to place bombs
-		for(let i = 0; i < this.bombs.length; i++) {
+		for(let i = 0; i < this.probability_chance; i++) {
 			for(let j = 0; j < this.bombs[i].length; j++) {
 				let generateNum = Math.floor(Math.random() * this.rows);
 				this.bombs[i][j] = generateNum;
