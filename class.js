@@ -10,8 +10,7 @@ class Minesweeper
     static cells;
     static rows;
     static columns;
-	static cellX;
-	static cellY;
+	static probability_chance;
 	
 
 	// PLACE YOUR PROPERTIES ABOVE
@@ -20,42 +19,58 @@ class Minesweeper
     {
         // PLACE YOUR PROPERTIES BELOW
 
-		this.cells = new Array(rows).fill(null).map(() => new Array(columns).fill(null));
-		this.bombs = new Array(rows).fill(null).map(() => new Array(2).fill(null));
 		this.rows = rows;
 		this.columns = columns; 
-		this.cellX = 0;
-		this.cellY = 0;
+		this.probability_chance = probability_chance;
+		this.cells = new Array(rows).fill(null).map(() => new Array(columns).fill(null));
+		this.bombs = new Array(Math.floor(probability_chance * (rows*columns))).fill(null).map(() => new Array(2).fill(null)); // creates 15 bombs
 		
 		// PLACE YOUR PROPERTIES ABOVE
     }
     
+	// The method sets the attributes for each cell to default state (close and no flag)
     init_board()
     {
 		// PLACE YOUR IMPLEMENTATION BELOW
 
-		// After looking at this I think it would be best to create a 2D array
-        // with the values of these buttons, because we will be able to call on a 
-        // specific index to the value, this implementation just creates the buttons
-        // in an iterative way, but there would be no way for use to hold the value...
-        // in other words change this to a 2D array...
-		
+		// set all indexes to empty
         for(let i = 0; i < Minesweeper.SIZE; i++) {
 			for(let j = 0; j < Minesweeper.SIZE; j++) {
 				this.cells[i][j] = Minesweeper.EMPTY;
 			}
 		}
+
+		// generate random indexes to place bombs
+		for(let i = 0; i < this.bombs.length; i++) {
+			for(let j = 0; j < this.bombs[i].length; j++) {
+				let generateNum = Math.floor(Math.random() * this.rows);
+				this.bombs[i][j] = generateNum;
+			}
+		}
+
+		// place bombs at coordinates
+		for(let i = 0; i < this.bombs.length; i++) {
+			let x = this.bombs[i][0];
+			let y = this.bombs[i][1];
+			this.cells[x][y] = Minesweeper.BOMB;
+		}
         
 		// PLACE YOUR IMPLEMENTATION ABOVE
 	}
 	
+	// The method fills in the value for each cell by counting the bombs around
 	flood_fill()
 	{
 		// PLACE YOUR IMPLEMENTATION BELOW
 		
+		
+
+		
+		
 		// PLACE YOUR IMPLEMENTATION ABOVE
 	}
 	
+	// The method locks all cells (HTML components on the web page)
 	lock()
 	{
 		// PLACE YOUR IMPLEMENTATION BELOW
@@ -65,6 +80,7 @@ class Minesweeper
 		// PLACE YOUR IMPLEMENTATION ABOVE
 	}
 	
+	// The method unlocks all cells (HTML components on the web page)
 	unlock()
 	{
 		// PLACE YOUR IMPLEMENTATION BELOW
@@ -73,6 +89,7 @@ class Minesweeper
 		// PLACE YOUR IMPLEMENTATION ABOVE
 	}
 	
+	// The event listener method puts the flag on a cell 
 	_flag()
 	{
 		// PLACE YOUR IMPLEMENTATION BELOW
@@ -80,6 +97,7 @@ class Minesweeper
 		// PLACE YOUR IMPLEMENTATION ABOVE
 	}
 	
+	// The event listener method opens the cell 
 	_open()
 	{
 		// PLACE YOUR IMPLEMENTATION BELOW
@@ -87,6 +105,7 @@ class Minesweeper
 		// PLACE YOUR IMPLEMENTATION ABOVE
 	}
 	
+	// The method recursively explore the cell at the coordinates x and y 
 	explore(x, y)
 	{
 		// PLACE YOUR IMPLEMENTATION BELOW
@@ -94,6 +113,7 @@ class Minesweeper
 		// PLACE YOUR IMPLEMENTATION ABOVE
 	}
 	
+	// The method returns true if all non-bomb cells opened otherwise false
 	is_winning_choice()
 	{
 		// PLACE YOUR IMPLEMENTATION BELOW

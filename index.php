@@ -11,7 +11,7 @@
 		<br/><br/>
 		<script>
 		<!-- PLACE YOUR IMPLEMENTATION BELOW -->
-
+			
 			// create a div with id=container, then add styling and add it to the body.
 			let container = document.createElement("div");
 			container.setAttribute("id", "container");
@@ -25,13 +25,10 @@
 			
 			for(let i = 0; i < game.rows; i++) {
 				for(let j = 0; j < game.columns; j++) {
-					if(game.cells[i][j] === 'E') {
-						create_button();
-					}
+					create_button();
 				}
 				create_line_break();
 			}
-
 		
 		<!-- PLACE YOUR IMPLEMENTATION ABOVE -->
 		</script>
