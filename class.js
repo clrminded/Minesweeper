@@ -20,8 +20,7 @@ class Minesweeper
 
 		this.cells = new Array(rows).fill(null).map(()=>new Array(columns).fill(null));
 		this.rows = rows;
-		this.columns = columns;
-		this.bombs = Math.floor(probability_chance * Minesweeper.SIZE); 
+		this.columns = columns; 
 		
 
         // build the board: see init_board() below
