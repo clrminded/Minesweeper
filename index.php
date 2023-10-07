@@ -23,10 +23,11 @@
 			<?php
 				$rows = 15;
 				$cols = 15;
-				$randNum = rand(0,15);
+				$randNum = 0.1;
 
 				if (isset($_GET["rows"])) {
     				$rows = $_GET["rows"];
+					
 				} 
 				if (isset($_GET["columns"])) {
 					$cols = $_GET["columns"];
@@ -36,15 +37,14 @@
 				}
 			?>
 
+			console.log('rows', <?php echo $rows ?>)
+			console.log('cols', <?php echo $cols ?>)
+			console.log('probablity', <?php echo $randNum ?>)
+
 			let game = new Minesweeper(<?php echo $rows; ?>, <?php echo $cols; ?>, <?php echo $randNum ?> );
 			game.init_board();
 			
-			for(let i = 0; i < game.rows; i++) {
-				for(let j = 0; j < game.columns; j++) {
-					create_button();
-				}
-				create_line_break();
-			}
+			
 		
 		<!-- PLACE YOUR IMPLEMENTATION ABOVE -->
 		</script>

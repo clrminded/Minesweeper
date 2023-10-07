@@ -11,6 +11,7 @@ class Minesweeper
     static rows;
     static columns;
 	static probability_chance;
+	static selectedCell;
 	
 
 	// PLACE YOUR PROPERTIES ABOVE
@@ -23,7 +24,7 @@ class Minesweeper
 		this.columns = columns; 
 		this.probability_chance = probability_chance;
 		this.cells = new Array(rows).fill(null).map(() => new Array(columns).fill(null));
-		this.bombs = new Array(probability_chance).fill(null).map(() => new Array(2).fill(null)); // creates 15 bombs
+		this.bombs = new Array(Math.floor(probability_chance * (this.rows*this.columns))).fill(null).map(() => new Array(2).fill(null)); // creates 15 bombs
 		
 		// PLACE YOUR PROPERTIES ABOVE
     }
@@ -33,6 +34,27 @@ class Minesweeper
     {
 		// PLACE YOUR IMPLEMENTATION BELOW
 
+		const startButton = document.getElementById("start");
+		startButton.onclick = () => this.unlock();
+
+		for(let i = 0; i < this.rows; i++) {
+			for(let j = 0; j < this.columns; j++) {
+				const button = create_button();
+				button.id = `grid-button-row-${i +1}-column-${j+1}`
+			}
+			create_line_break();
+		}
+		// adds the open method to each button
+		document.querySelectorAll(".grid-button").forEach(button => 
+			button.addEventListener("click", () => {
+				this.selectedCell = button;
+				this._open()
+			})
+		)
+
+		document.querySelectorAll(".grid-button").forEach(button => button.addEventListener("rightclick", this._flag))	
+		this.lock();
+
 		// set all indexes to empty
         for(let i = 0; i < Minesweeper.SIZE; i++) {
 			for(let j = 0; j < Minesweeper.SIZE; j++) {
@@ -41,7 +63,8 @@ class Minesweeper
 		}
 
 		// generate random indexes to place bombs
-		for(let i = 0; i < this.probability_chance; i++) {
+		let generateBombs = Math.floor(this.probability_chance * (this.rows * this.columns));
+		for(let i = 0; i < generateBombs; i++) {
 			for(let j = 0; j < this.bombs[i].length; j++) {
 				let generateNum = Math.floor(Math.random() * this.rows);
 				this.bombs[i][j] = generateNum;
@@ -74,9 +97,7 @@ class Minesweeper
 	lock()
 	{
 		// PLACE YOUR IMPLEMENTATION BELOW
-	
-		
-
+		document.querySelectorAll(".grid-button").forEach(button => button.disabled = true);
 		// PLACE YOUR IMPLEMENTATION ABOVE
 	}
 	
@@ -84,8 +105,9 @@ class Minesweeper
 	unlock()
 	{
 		// PLACE YOUR IMPLEMENTATION BELOW
-		
-		
+		document.querySelectorAll(".grid-button").forEach(button => button.disabled = false);
+		const startButton = document.getElementById("start");
+		startButton.textContent = "Reset"
 		// PLACE YOUR IMPLEMENTATION ABOVE
 	}
 	
@@ -101,7 +123,14 @@ class Minesweeper
 	_open()
 	{
 		// PLACE YOUR IMPLEMENTATION BELOW
-
+		console.log(this.selectedCell) 
+		const cell = this.selectedCell.id;
+		const regex = /\d+/g; //matches numbers
+		const matches = cell.match(regex);  // creates array from matches
+		const x = matches[0];
+		const y = matches[1];
+		console.log("x:", x);
+		console.log("y:", y)
 		// PLACE YOUR IMPLEMENTATION ABOVE
 	}
 	

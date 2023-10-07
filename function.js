@@ -13,19 +13,19 @@ function create_line_break()
 function create_button()
 {
 	// PLACE YOUR CODE IN HERE
-	let container = document.getElementById("container");
+	const container = document.getElementById("container");
 	
     // assign variable named input as to create an HTML input element.
-    let button = document.createElement('button');
-	button.setAttribute('className', 'button');
-
+    const button = document.createElement('button');
     // style the button
+    button.classList.add("grid-button");
     button.style.background="url('assets/0.png')";
     button.style.height="24";
     button.style.width="24";
 	button.style.backgroundSize = '100%';
     
 	container.appendChild(button);
+    return button;
 }
 
 function avoid_image_loading_delay()
