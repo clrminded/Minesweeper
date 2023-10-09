@@ -10,7 +10,7 @@ class Minesweeper
     static cells;
     static rows;
     static columns;
-	static probability_chance;
+	
 	static selectedCell;
 	
 	
@@ -78,14 +78,13 @@ class Minesweeper
 
 		// add the flag method
 		document.querySelectorAll(".grid-button").forEach(button => 
-			button.addEventListener("oncontextmenu", () => {
+			button.addEventListener("contextmenu", (e) => {
+				e.preventDefault();
 				this.selectedCell = button;
 				this._flag();
 			})
 		);
 		
-		
-        
 		// PLACE YOUR IMPLEMENTATION ABOVE
 	}
 	
@@ -132,6 +131,8 @@ class Minesweeper
 		console.log('placed a flag!');
 		console.log("x:", x);
 		console.log("y:", y);
+		this.selectedCell.style.background = "url('assets/flag.png')";
+		this.selectedCell.style.backgroundSize = '100%';
 		
 
 		// PLACE YOUR IMPLEMENTATION ABOVE
