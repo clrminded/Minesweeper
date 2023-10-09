@@ -19,9 +19,10 @@ function create_button()
     const button = document.createElement('button');
     // style the button
     button.classList.add("grid-button");
-    button.style.background="url('assets/0.png')";
+
     button.style.height="24";
     button.style.width="24";
+    button.style.background="url('assets/empty.png')";
 	button.style.backgroundSize = '100%';
     
 	container.appendChild(button);

@@ -16,34 +16,34 @@
 			let container = document.createElement("div");
 			container.setAttribute("id", "container");
 			document.body.appendChild(container);
+
+			
 				
 				
 			// assign variable names game to Minesweeper object and add it to body
 			// Look in class.js to see the implementation of Minesweeper()
 			<?php
 				$rows = 15;
-				$cols = 15;
-				$randNum = 0.1;
+				$columns = 15;
+				$probability_chance = 0.1;
 
 				if (isset($_GET["rows"])) {
     				$rows = $_GET["rows"];
 					
 				} 
 				if (isset($_GET["columns"])) {
-					$cols = $_GET["columns"];
+					$columns = $_GET["columns"];
 				}
 				if (isset($_GET["probability_chance"])) {
-					$randNum = $_GET["probability_chance"];
+					$probability_chance = $_GET["probability_chance"];
 				}
 			?>
 
 			console.log('rows', <?php echo $rows ?>)
-			console.log('cols', <?php echo $cols ?>)
-			console.log('probablity', <?php echo $randNum ?>)
+			console.log('columns', <?php echo $columns ?>)
+			console.log('probablity_chance', <?php echo $probability_chance ?>)
 
-			let game = new Minesweeper(<?php echo $rows; ?>, <?php echo $cols; ?>, <?php echo $randNum ?> );
-			game.init_board();
-			
+			let game = new Minesweeper(<?php echo $rows; ?>, <?php echo $columns; ?>, <?php echo $probability_chance ?> );
 			
 		
 		<!-- PLACE YOUR IMPLEMENTATION ABOVE -->
