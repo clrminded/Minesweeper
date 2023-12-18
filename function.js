@@ -1,31 +1,24 @@
 function create_line_break()
 {
 	// PLACE YOUR CODE IN HERE
-	// assign variable named container as a selector to the HTML element with the id equal to "container".
-    let container = document.getElementById("container");
-    // assign variable named lineBreak to create an HTML element equal to <br>.
-    let lineBreak = document.createElement('br');
-    // add the lineBreak element to the container selector.
-  	container.appendChild(lineBreak);
-    
+	// append a line break (node) to the body of the document.
+	const line_break = document.createElement('br');
+	document.body.appendChild(line_break);
+	return line_break;
 }
 
 function create_button()
 {
 	// PLACE YOUR CODE IN HERE
-	let container = document.getElementById("container");
-	
-    // assign variable named input as to create an HTML input element.
-    let button = document.createElement('button');
-	button.setAttribute('className', 'button');
+	// append a button (node) to the body of the document.
+	const button = document.createElement('button');
+    document.body.appendChild(button);
 
-    // style the button
-    button.style.background="url('assets/0.png')";
-    button.style.height="24";
-    button.style.width="24";
-	button.style.backgroundSize = '100%';
-    
-	container.appendChild(button);
+	button.style.background = "url('assets/empty.png')";
+	button.style.backgroundSize = "100%";
+	button.style.width = "25";
+	button.style.height = "25";
+    return button;
 }
 
 function avoid_image_loading_delay()
